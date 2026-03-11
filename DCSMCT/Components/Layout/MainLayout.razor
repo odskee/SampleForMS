@@ -1,0 +1,75 @@
+﻿@using CommunityToolkit.Mvvm.Messaging
+@using DCSMCT.Messages
+@using SampleForMS.Components.Interface
+@using Serilog
+@inherits LayoutComponentBase
+@inject IDialogService Dialog
+@inject ISnackbar Snackbar
+@inject IJSRuntime jsRuntime
+@inject NavigationManager _nav
+@inject ITestController _TC
+
+<MudLayout >
+    <MudDrawer @bind-Open="@DrawOpen" Fixed="true" Elevation="1" Variant="@DrawerVariant.Mini" ClipMode="DrawerClipMode.Always" OpenMiniOnHover="false">
+        <NavMenu @bind-IsOpen="DrawOpen" />
+    </MudDrawer>
+
+    <MudMainContent >
+        @Body
+        <MudScrollToTop >
+            <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
+        </MudScrollToTop>
+    </MudMainContent>
+
+</MudLayout>
+
+<MudThemeProvider IsDarkMode="true" Theme="BlueButtons" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider  />
+
+
+@code {
+    bool DrawOpen = false;
+    IDialogReference? LoadingWindow = null;
+
+    MudTheme BlueButtons = new MudTheme()
+        {
+
+            PaletteLight = new PaletteLight()
+            {
+                Primary = Colors.Teal.Accent4,
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Teal.Accent4
+            }
+        };
+
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        WeakReferenceMessenger.Default.Register<AddToasterMessage>(this, async (r, m) =>
+        {
+            KeyValuePair<string, Severity> pars = m.Value;
+
+            Snackbar.Add(pars.Key, pars.Value);
+        });
+
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        try
+        {
+            var res = _TC.DoStringSomething();
+        }
+        catch(Exception ex)
+        {
+            Log.Error("Error adding keyboard listener", ex);
+        }
+
+    }
+}

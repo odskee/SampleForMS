@@ -1,0 +1,29 @@
+﻿
+
+
+
+<MudNavMenu Color="Color.Tertiary" Dense="true" >
+    <MudTooltip Placement="Placement.Right" >
+        <MudNavLink Match="NavLinkMatch.Prefix" Style="color: #fff7ed" Href="/Page1"  Disabled="_restrict">Page1</MudNavLink>
+    </MudTooltip>
+
+    <MudTooltip Placement="Placement.Right" >
+        <MudNavLink Match="NavLinkMatch.Prefix" Style="color: #fff7ed" Href="/Page4" Disabled="_restrict">Page4</MudNavLink>
+    </MudTooltip>
+
+    <MudTooltip Placement="Placement.Right" >
+        <MudNavLink Match="NavLinkMatch.Prefix" Style="color: #fff7ed" Href="/Page3"  Disabled="_restrict">Page3</MudNavLink>
+    </MudTooltip>
+
+    <MudTooltip Placement="Placement.Right">
+        <MudNavLink Match="NavLinkMatch.Prefix" Style="color: #fff7ed" Href="Page2" Disabled="_restrict">Page2</MudNavLink>
+    </MudTooltip>
+
+</MudNavMenu>
+
+<MudSpacer />
+
+
+@code{
+    bool _restrict = false;
+}

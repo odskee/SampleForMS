@@ -1,0 +1,26 @@
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "MsixPackage",
+      "nativeDebugging": false,
+      "hotReloadEnabled": true,
+      "DeployOptionalPackages": true,
+      "AllowLocalNetworkLoopback": true,
+      "LayoutDir": "H:\\Toolbox\\mctBuild",
+      "remoteDebugEnabled": false,
+      "authenticationMode": "None"
+    },
+    "Profile 1": {
+      "commandName": "Project",
+      "workingDirectory": "H:\\",
+      "jsWebView2Debugging": true,
+      "hotReloadEnabled": false,
+      "nativeDebugging": true,
+      "remoteDebugEnabled": false
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}
