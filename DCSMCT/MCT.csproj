@@ -1,0 +1,219 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>DCSMCT</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <EnableDefaultCssItems>false</EnableDefaultCssItems>
+        <Nullable>enable</Nullable>
+
+		<!-- Enable XAML source generation for faster build times and improved performance.
+             This generates C# code from XAML at compile time instead of runtime inflation.
+             To disable, remove this line.
+             For individual files, you can override by setting Inflator metadata:
+               <MauiXaml Update="MyPage.xaml" Inflator="Default" /> (reverts to defaults: Runtime for Debug, XamlC for Release)
+               <MauiXaml Update="MyPage.xaml" Inflator="Runtime" /> (force runtime inflation) -->
+		<MauiXamlInflator>SourceGen</MauiXamlInflator>
+
+		<!-- Display name -->
+        <ApplicationTitle>MCT</ApplicationTitle>
+
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.dcsmct</ApplicationId>
+
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+		
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+      <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+      <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+      <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+      <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+      <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+      <GenerateTestArtifacts>True</GenerateTestArtifacts>
+      <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+      <PackageCertificateThumbprint>3F76B273C37A51B681083F4034646E57B24FA9A2</PackageCertificateThumbprint>
+      <PlatformTarget>x64</PlatformTarget>
+	  <WindowsAppSdkDeploymentManagerInitialize>false</WindowsAppSdkDeploymentManagerInitialize>
+	  <AppInstallerUri>https://drive.google.com/drive/folders/1n1Jy_7w8zOR7sg-aLwHGVkLmgXU_2mSj%3fusp=sharing</AppInstallerUri>
+	  <DefaultLanguage>en-gb</DefaultLanguage>
+	  <Title>MCT</Title>
+	  <PackageIcon>MCTIcon.png</PackageIcon>
+	  <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+	  <Copyright>MCT © 2024. All Rights Reserved.</Copyright>
+	  <PackageProjectUrl>https://www.mctoolbox.uk/</PackageProjectUrl>
+	  <AnalysisLevel>latest</AnalysisLevel>
+
+		<DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+
+		<CreateMSIXPackage>False</CreateMSIXPackage>
+
+	</PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
+      <ApplicationTitle>MCT</ApplicationTitle>
+      <Optimize>False</Optimize>
+      <NoWarn>1701;1702;1998</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
+      <ApplicationTitle>MCT</ApplicationTitle>
+      <NoWarn>1701;1702;1998</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+        <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\*" />
+        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+        <!-- Custom Fonts -->
+        <MauiFont Include="Resources\Fonts\*" />
+
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Models\**" />
+      <Content Remove="Models\**" />
+      <EmbeddedResource Remove="Models\**" />
+      <MauiXaml Remove="Models\**" />
+      <None Remove="Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="appsettings.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <EmbeddedResource Include="appsettings.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AntDesign.Charts" Version="0.9.0" />
+        <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+        <PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="9.0.2" />
+        <PackageReference Include="CommunityToolkit.Maui" Version="14.0.1" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="CoordinateSharp" Version="3.4.1.1" />
+        <PackageReference Include="CoordinateSharp.Magnetic" Version="2.1.5" />
+        <PackageReference Include="CsvHelper" Version="33.1.0" />
+        <PackageReference Include="DeviceId" Version="6.10.0" />
+        <PackageReference Include="DeviceId.Windows" Version="6.10.0" />
+        <PackageReference Include="GeoCoordinate.NetCore" Version="1.0.0.1" />
+        <PackageReference Include="Humanizer.Core" Version="3.0.10" />
+        <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="10.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.3">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="10.0.41" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.41" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.3" />
+        <PackageReference Include="MimeTypeMapOfficial" Version="1.0.17" />
+        <PackageReference Include="MoonSharp" Version="2.0.0.0" />
+        <PackageReference Include="MudBlazor" Version="9.1.0" />
+        <PackageReference Include="MudBlazor.Extensions" Version="9.0.1" />
+        <PackageReference Include="MudExRichTextEditor" Version="9.0.0" />
+        <PackageReference Include="NeoLua" Version="1.3.18" />
+        <PackageReference Include="Nextended.Core" Version="10.0.8" />
+        <PackageReference Include="PDFtoImage" Version="5.2.0" />
+        <PackageReference Include="PSC.Blazor.Components.MarkdownEditor" Version="8.0.8" />
+        <PackageReference Include="PuppeteerSharp" Version="20.2.4" />
+        <PackageReference Include="Serilog" Version="4.3.1" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="10.0.0" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+        <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
+        <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+        <PackageReference Include="System.Drawing.Common" Version="10.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Properties\PublishProfiles\" />
+      <Folder Include="Resources\Raw\imprt\" />
+      <Folder Include="Resources\Raw\Splash\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Resources\Raw\GeoJson\FacilityJson.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Properties\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Properties\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiAsset Update="Resources\Raw\VersionSamples\MCTTheare.json">
+        <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+      </MauiAsset>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="MCTIcon.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+      <None Update="Resources\AppIcon\logo_512.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+      <None Update="Resources\AppIcon\MCT_Logo.scale-125.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+      <None Update="Resources\AppIcon\NewIcon\MCT_Logo.targetsize-256.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+      <None Update="Resources\AppIcon\PongIcon\MCT_Logo.altform-unplated_targetsize-256.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PRIResource Remove="Models\**" />
+    </ItemGroup>
+
+</Project>

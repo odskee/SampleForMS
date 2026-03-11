@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
+    <ActiveDebugFramework>net8.0-windows10.0.19041.0</ActiveDebugFramework>
+    <ActiveDebugProfile>Windows Machine</ActiveDebugProfile>
+    <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
+    <AppxShowAllApps>False</AppxShowAllApps>
+    <_LastSelectedProfileId>MSIX-win10-x64.pubxml</_LastSelectedProfileId>
+    <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+    <AppxBuildConfigurationSelection>neutral</AppxBuildConfigurationSelection>
+    <AppIconSource>D:\SampleVS\DCSMCT\Resources\AppIcon\Untitled.jpg</AppIconSource>
+    <SelectedPlatformGroup>LocalDevice</SelectedPlatformGroup>
+    <SmallTileSource>D:\SampleVS\DCSMCT\Resources\AppIcon\Untitled.jpg</SmallTileSource>
+    <MediumTileSource>D:\SampleVS\DCSMCT\Resources\AppIcon\Untitled.jpg</MediumTileSource>
+    <WideTileSource>D:\SampleVS\DCSMCT\Resources\AppIcon\Untitled.jpg</WideTileSource>
+    <LargeTileSource>D:\SampleVS\DCSMCT\Resources\AppIcon\Untitled.jpg</LargeTileSource>
+    <SplashScreenSource>D:\SampleVS\DCSMCT\Resources\AppIcon\Untitled.jpg</SplashScreenSource>
+    <PackageLogoSource>D:\SampleVS\DCSMCT\Resources\AppIcon\Untitled.jpg</PackageLogoSource>
+    <DeployOptionalPackages>False</DeployOptionalPackages>
+    <BadgeLogoSource>D:\SampleVS\DCSMCT\Resources\AppIcon\Untitled.jpg</BadgeLogoSource>
+    <Source>D:\SampleVS\DCSMCT\Resources\AppIcon\Untitled.jpg</Source>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetPlatformIdentifier)'=='iOS'">
+    <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    <PlatformTarget>arm64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.19041.0|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Update="Platforms\Windows\Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Update="App.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="MainPage.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="Platforms\Windows\App.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="Platforms\Windows\Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+</Project>
